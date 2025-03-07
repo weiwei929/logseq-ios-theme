@@ -1,0 +1,44 @@
+/* iOS 风格主题基础样式 */
+
+:root {
+    /* 字体设置 */
+    --ls-font-family: -apple-system, "SF Pro SC", "SF Pro Text", "SF Pro Icons", 
+                      "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    
+    /* 基础布局 */
+    --ls-main-content-max-width: 880px;
+    --ls-main-content-padding: 2rem;
+    
+    /* 圆角设置 */
+    --ls-border-radius-low: 8px;
+    --ls-border-radius-medium: 12px;
+    --ls-border-radius-high: 16px;
+    
+    /* 动画效果 */
+    --ls-transition-duration: 0.3s;
+    --ls-transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* 基础布局样式 */
+  .dark-theme, html[data-theme='dark'] {
+    color-scheme: dark;
+  }
+  
+  .light-theme, html[data-theme='light'] {
+    color-scheme: light;
+  }
+  
+  /* iOS风格滚动条 */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--ls-scrollbar-thumb-color);
+    border-radius: 4px;
+  }

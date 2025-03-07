@@ -1,0 +1,31 @@
+{
+  "name": "logseq-ios-theme",
+  "version": "1.0.0",
+  "description": "iOS style theme for Logseq",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc && npm run copy-css",
+    "clean": "rimraf dist",
+    "clean:release": "rimraf release",
+    "prebuild": "npm run clean",
+    "copy-css": "xcopy /Y src\\styles\\ios-theme.css dist\\styles\\",
+    "package": "npm run clean:release && npm run build && mkdir release && xcopy /E /I /Y dist\\* release\\ && copy /Y package.json release"
+  },
+  "author": "Pennfly",
+  "license": "MIT",
+  "logseq": {
+    "id": "logseq-ios-theme",
+    "title": "iOS Theme",
+    "mode": "theme",
+    "entry": "index.js"
+  },
+  "dependencies": {
+    "@logseq/libs": "^0.0.14"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.0",
+    "rimraf": "^3.0.2"
+  }
+}

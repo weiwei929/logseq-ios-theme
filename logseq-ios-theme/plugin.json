@@ -1,0 +1,19 @@
+{
+    "title": "iOS Style Theme",
+    "description": "An iOS style theme for Logseq",
+    "author": "Pennfly",
+    "repo": "pennfly/logseq-ios-theme",
+    "version": "1.0.0",
+    "themes": [
+      {
+        "name": "iOS Light",
+        "url": "dist/styles/light.css",
+        "description": "iOS style light theme"
+      },
+      {
+        "name": "iOS Dark", 
+        "url": "dist/styles/dark.css",
+        "description": "iOS style dark theme"
+      }
+    ]
+}

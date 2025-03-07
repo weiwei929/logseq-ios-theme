@@ -1,0 +1,30 @@
+/* iOS 风格暗色主题 */
+.dark-theme, html[data-theme='dark'] {
+    /* 主要颜色 */
+    --ls-primary-background-color: #1c1c1e;
+    --ls-secondary-background-color: #2c2c2e;
+    --ls-tertiary-background-color: #3a3a3c;
+    
+    /* 文本颜色 */
+    --ls-primary-text-color: #ffffff;
+    --ls-secondary-text-color: #98989d;
+    
+    /* 边框和分割线 */
+    --ls-border-color: #38383a;
+    --ls-separator-color: rgba(255, 255, 255, 0.1);
+    
+    /* 交互元素 */
+    --ls-primary-button-background-color: #0a84ff;
+    --ls-primary-button-text-color: #ffffff;
+    
+    /* 链接颜色 */
+    --ls-link-color: #0a84ff;
+    --ls-link-hover-color: #5e5ce6;
+    
+    /* 滚动条 */
+    --ls-scrollbar-thumb-color: rgba(255, 255, 255, 0.2);
+    
+    /* 卡片和阴影 */
+    --ls-block-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    --ls-card-background: #2c2c2e;
+  }
