@@ -1,0 +1,525 @@
+/* iOS风格Logseq主题 */
+/* 作者：Claude */
+/* 版本：1.1 */
+
+:root {
+  /* 字体变量 */
+  --font-sans: "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", 
+               "Microsoft YaHei UI", Consolas, monospace;
+               
+  /* 明亮模式变量 */
+  --bg-color: #f0f0f0;              /* 更柔和灰色背景 */
+  --sidebar-bg-color: #c0c0c0;      /* 侧边栏背景 */
+  --card-bg-color: #ffffff;         /* 卡片背景 */
+  --primary-color: #8b919a;         /* 改为深灰色 */
+  --secondary-color: #5856d6;       /* 辅助色 */
+  --accent-color: #ff2d55;          /* 强调色 */
+  --text-color: #000000;           /* 主文本色 */
+  --secondary-text-color: #6c6c70; /* 次要文本色 */
+  --border-color: #c7c7cc;         /* 边框色 */
+  --search-bg-color: #d8d8d8;      /* 搜索栏背景 */
+  --shadow-color: rgba(0, 0, 0, 0.16); /* 阴影颜色 */
+  
+  /* 动画持续时间 */
+  --transition-duration: 0.3s;
+}
+
+/* 暗黑模式变量优化 */
+.dark-theme {
+  --bg-color: #000000;              /* 纯黑背景提升对比度 */
+  --sidebar-bg-color: #1c1c1e;      /* 深色侧边栏 */
+  --card-bg-color: #1c1c1e;         /* 深色卡片 */
+  --primary-color: #6b7280;         /* 暗色模式下使用稍浅的灰色 */
+  --secondary-color: #5e5ce6;       /* 深色辅助色 */
+  --accent-color: #ff375f;          /* 深色强调 */
+  --text-color: #ffffff;            /* 白色文本 */
+  --secondary-text-color: #aeaeb2;  /* 提高次要文本对比度 */
+  --border-color: #38383a;          /* 深色边框 */
+  --search-bg-color: #2c2c2e;       /* 深色搜索栏 */
+  --shadow-color: rgba(0, 0, 0, 0.5);/* 深色阴影 */
+}
+
+/* 全局过渡动画 */
+.animated {
+  transition: background-color var(--transition-duration) ease,
+              color var(--transition-duration) ease,
+              border-color var(--transition-duration) ease,
+              box-shadow var(--transition-duration) ease,
+              transform var(--transition-duration) ease;
+}
+
+/* 基础样式 */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* 整体布局 */
+.ls-main {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* 侧边栏样式 */
+.sidebar {
+  width: 180px;  /* 调整为更窄的宽度 */
+  background-color: var(--sidebar-bg-color);
+  border-right: 1px solid var(--border-color);
+  padding: 12px;  /* 稍微减小内边距 */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 侧边栏列表项保持原有大小 */
+.sidebar-item {
+  padding: 8px 12px;
+  margin: 2px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;  /* 保持原有字体大小 */
+  white-space: nowrap;  /* 防止文字换行 */
+  overflow: hidden;
+  text-overflow: ellipsis;  /* 超出部分显示省略号 */
+}
+
+/* 响应式设计优化 */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 25%;
+  }
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+
+/* 侧边栏头部 */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* 搜索框优化 */
+.search-box {
+  background-color: var(--search-bg-color);
+  border-radius: 12px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  transition: all var(--transition-duration) ease;
+}
+
+.search-box:focus-within {
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-color);
+  font-size: 14px;
+  width: 100%;
+  font-family: inherit;
+}
+
+.search-box input::placeholder {
+  color: var(--secondary-text-color);
+}
+
+/* 侧边栏列表 */
+.sidebar-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar-item {
+  padding: 8px 12px;
+  margin: 2px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all var(--transition-duration) ease;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-item.active {
+  background-color: rgba(0, 122, 255, 0.15);
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.dark-theme .sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* 主内容区域 */
+.main-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+/* 标题样式优化 */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: var(--text-color);
+}
+
+h1 { font-size: 1.8em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.3em; }
+h4 { font-size: 1.2em; }
+h5 { font-size: 1.1em; }
+h6 { font-size: 1em; }
+
+/* 日期标题样式优化 */
+.page h1 {
+  background-color: #e8e8e8;
+  padding: 16px 24px;
+  margin: 0 -24px 24px -24px;
+  font-size: 1.8em;
+  font-weight: 600;
+  color: var(--text-color);
+  transition: all var(--transition-duration) ease;
+  width: calc(100% + 48px);
+  box-sizing: border-box;
+  position: relative;
+}
+
+.dark-theme .page h1 {
+  background-color: #242426;
+}
+
+/* 段落和文本 */
+p {
+  margin: 0 0 1em 0;
+}
+
+/* 块引用优化 */
+blockquote {
+  border-left: 3px solid var(--primary-color);
+  padding: 0.8em 1em;  /* 增加内边距 */
+  margin: 0.5em 0;
+  color: var(--secondary-text-color);
+  font-size: 0.95em;
+  line-height: 1.5;
+  background-color: var(--card-bg-color);  /* 使用白色背景 */
+  box-shadow: 0 1px 4px var(--shadow-color);  /* 添加轻微阴影 */
+}
+
+blockquote p {
+  margin: 0.2em 0;
+}
+
+/* 代码块和内联代码统一样式 */
+pre, code, .inline-code {
+  font-family: var(--font-mono);
+  background-color: var(--card-bg-color);
+  border-radius: 6px;
+  font-size: 0.9em;
+  border: 1px solid var(--border-color);
+}
+
+/* 代码块特殊样式 */
+pre {
+  padding: 16px;
+  overflow-x: auto;
+  margin: 1em 0;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+/* 内联代码特殊样式 */
+code, .inline-code {
+  padding: 2px 4px;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin: 0 2px;
+}
+
+.dark-theme code,
+.dark-theme .inline-code {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 列表样式优化 */
+ul, ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0 1em 0;
+}
+
+li {
+  margin-bottom: 0.3em;
+}
+
+/* 复选框优化 */
+input[type="checkbox"] {
+  border-radius: 6px;
+  border: 1.5px solid var(--border-color);
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  position: relative;
+  top: 2px;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  transition: all var(--transition-duration) ease;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+input[type="checkbox"]:checked::after {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  animation: checkmark 0.2s ease-in-out;
+}
+
+@keyframes checkmark {
+  0% {
+    transform: rotate(45deg) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(45deg) scale(1);
+    opacity: 1;
+  }
+}
+
+/* 表格优化 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 14px;
+  background-color: var(--card-bg-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  font-weight: 600;
+  color: var(--secondary-text-color);
+  background-color: var(--bg-color);
+}
+
+/* 卡片效果优化 */
+.card {
+  background-color: var(--card-bg-color);
+  border-radius: 16px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  padding: 16px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+  transition: transform var(--transition-duration) ease,
+              box-shadow var(--transition-duration) ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+/* 链接样式优化 */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: all var(--transition-duration) ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* 标签样式优化 */
+.tag {
+  display: inline-block;
+  background-color: rgba(0, 122, 255, 0.1);
+  color: var(--primary-color);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 12px;
+  margin-right: 6px;
+  transition: all var(--transition-duration) ease;
+}
+
+.tag:hover {
+  background-color: rgba(0, 122, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.dark-theme .tag {
+  background-color: rgba(10, 132, 255, 0.2);
+}
+
+.dark-theme .tag:hover {
+  background-color: rgba(10, 132, 255, 0.3);
+}
+
+/* 主题切换按钮优化 */
+.theme-toggle {
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 60px;
+  height: 28px;
+  position: relative;
+  cursor: pointer;
+  transition: all var(--transition-duration) ease;
+}
+
+.toggle-thumb {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  left: 3px;
+  transition: transform var(--transition-duration) ease;
+}
+
+.dark-theme .toggle-thumb {
+  transform: translateX(32px);
+}
+
+.toggle-icon {
+  width: 50%;
+  text-align: center;
+  font-size: 12px;
+  z-index: 1;
+}
+
+/* 响应式设计优化 */
+@media (max-width: 768px) {
+  .sidebar-item {
+    padding: 12px 16px;
+    margin: 4px 0;
+  }
+  
+  body {
+    font-size: 16px;
+  }
+
+  .ls-main {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .main-content {
+    padding: 16px;
+  }
+}
+
+/* Logseq 特定元素样式优化 */
+.block-ref {
+  border-bottom: 1px dashed var(--primary-color);
+  padding-bottom: 1px;
+  transition: all var(--transition-duration) ease;
+}
+
+.block-ref:hover {
+  background-color: rgba(0, 122, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.page-ref {
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: all var(--transition-duration) ease;
+}
+
+.page-ref:hover {
+  opacity: 0.8;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-text-color);
+}
+
+/* 选中文本样式 */
+::selection {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* 焦点状态优化 */
+:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* 增加链接可访问性 */
+a:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
